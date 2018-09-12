@@ -7,10 +7,10 @@ import characters from "../characters.json";
 
 
 export default class HOME extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      characters: null,
+      characters: this.props.characters,
       data: null
     };
 
@@ -18,7 +18,7 @@ export default class HOME extends Component {
   }
 
   componentDidMount(){
-    this.setCharacterData();
+    // this.setCharacterData();
   }
 
   setCharacterData(){
@@ -42,6 +42,7 @@ export default class HOME extends Component {
   // }
 
   render(){
+    console.log("HOME", this.props)
     return(
       <div id="Home-Container">
         {this.state.characters && this.state.characters.length ? this.state.characters.map((character, index) => {
