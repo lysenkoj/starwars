@@ -45,9 +45,15 @@ export default class HOME extends Component {
     console.log("HOME", this.props)
     return(
       <div id="Home-Container">
-        {this.state.characters && this.state.characters.length ? this.state.characters.map((character, index) => {
-          return <Link to={`/${character.name}}`} key={index}> {character.name} </Link>
-        }) : "NO DATA"}
+        <div id="Home-Title">
+          <h1>STAR WARS</h1>
+          <h3>Character Film Guide</h3>
+        </div>
+        <div id="Home-Main-Content-Container">
+          {this.state.characters && this.state.characters.length ? this.state.characters.map((character, index) => {
+            return <Link to={`/${character.name}}`} key={index}> {character.name} </Link>
+          }) : "NO DATA"}
+        </div>
       </div>
     )
   }

@@ -63,7 +63,7 @@ export default class Character extends Component {
     console.log("FILMS", this.state.films);
     return(
       <div id="Character-Container">
-        {this.state.films.map((film, index) => {
+        {(this.state.films.length) ? this.state.films.map((film, index) => {
           const filmRelease = [];
 
           const dayObj = {
@@ -113,7 +113,7 @@ export default class Character extends Component {
                   <p>{film.title}</p>
                   <p>{filmRelease.join(" ")}</p>
                 </div>
-        })}
+        }) : <h3>Please Enter a Valid URL</h3>}
       </div>
     )
   }
