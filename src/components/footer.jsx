@@ -7,7 +7,7 @@ export default class Footer extends Component {
   render(){
     return(
       <div id="Footer-Container">
-      FOOT FOOT
+
       </div>
     )
   }

@@ -60,9 +60,60 @@ export default class Character extends Component {
   render(){
     console.log("PROPS!!!", this.props);
     console.log("STATE!!!!", this.state);
+    console.log("FILMS", this.state.films);
     return(
       <div id="Character-Container">
+        {this.state.films.map((film, index) => {
+          const filmRelease = [];
 
+          const dayObj = {
+            Sun: "Sunday,",
+            Mon: "Monday,",
+            Tue: "Tuesday,",
+            Wed: "Wednesday,",
+            Thu: "Thursday,",
+            Fri: "Friday,",
+            Sat: "Saturday,"
+          };
+
+          const monthObj = {
+            Jan: "January",
+            Feb: "February",
+            Mar: "March",
+            Apr: "April",
+            May: "May",
+            Jun: "June",
+            Jul: "July",
+            Aug: "August",
+            Sep: "September",
+            Oct: "October",
+            Nov: "November",
+            Dec: "December",
+          };
+
+          const unformatted = film.release_date.split('-');
+
+          const year = unformatted[0];
+          const month = unformatted[1];
+          const day = unformatted[2];
+
+          let newDate = new Date(year, month, day);
+          let arrayDate = newDate.toString().split(' ');
+
+          arrayDate.length = 4;
+
+          filmRelease.push(dayObj[arrayDate[0]]);
+          filmRelease.push(monthObj[arrayDate[1]]);
+          filmRelease.push(arrayDate[2]);
+          filmRelease.push(arrayDate[3]);
+
+          console.log("DATE", arrayDate);
+
+          return <div key={index}>
+                  <p>{film.title}</p>
+                  <p>{filmRelease.join(" ")}</p>
+                </div>
+        })}
       </div>
     )
   }

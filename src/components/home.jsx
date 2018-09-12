@@ -46,12 +46,7 @@ export default class HOME extends Component {
     return(
       <div id="Home-Container">
         {this.state.characters && this.state.characters.length ? this.state.characters.map((character, index) => {
-          return <Link to={
-            {
-              pathname:`/${character.name}}`,
-              myCustomProps:{character}
-            }
-            } key={index}> {character.name} </Link>
+          return <Link to={`/${character.name}}`} key={index}> {character.name} </Link>
         }) : "NO DATA"}
       </div>
     )
