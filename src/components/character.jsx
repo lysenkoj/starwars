@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { OMDb_KEY } from '../secrets';
 // import { Link } from 'react-router-dom';
 
 // import '../Sass/Character.sass';
@@ -11,7 +12,8 @@ export default class Character extends Component {
       characters: this.props.characters,
       url: null,
       data: null,
-      films: []
+      films: [],
+      filmsPoster: []
     };
 
     const pathName = this.props.location.pathname.slice(1, this.props.location.pathname.length - 1);
@@ -53,7 +55,27 @@ export default class Character extends Component {
   fetchFilms(url){
     fetch(url)
       .then(data => data.json())
-      .then(data => this.setState({ films: [...this.state.films, data] }))
+      .then(data => {
+        this.setState({ films: [...this.state.films, data] })
+        return data;
+      })
+      .then(data => {
+        this.fetchPoster(data);
+        return data;
+      })
+      .catch(er => console.log(er))
+  }
+
+  fetchPoster(film){
+    const filmTitle = film.title.split(' ').join('+');
+    const api = `http://www.omdbapi.com/?t=${filmTitle}&apikey=${OMDb_KEY}`;
+
+    fetch(api)
+      .then(data => data.json())
+      .then(data => {
+        this.setState({ filmsPoster: [...this.state.filmsPoster, data.Poster] })
+        return data;
+      })
       .catch(er => console.log(er))
   }
 
@@ -63,6 +85,7 @@ export default class Character extends Component {
     console.log("FILMS", this.state.films);
     return(
       <div id="Character-Container">
+        <div id="Character-Title">{this.props.location.pathname.slice(1, this.props.location.pathname.length - 1)}</div>
         {(this.state.films.length) ? this.state.films.map((film, index) => {
           const filmRelease = [];
 
@@ -107,9 +130,8 @@ export default class Character extends Component {
           filmRelease.push(arrayDate[2]);
           filmRelease.push(arrayDate[3]);
 
-          console.log("DATE", arrayDate);
-
-          return <div key={index}>
+          return <div id='Film-Container' key={index}>
+                  <img src={(this.state.filmsPoster[index] !== 'N/A') ? this.state.filmsPoster[index] : 'https://images-na.ssl-images-amazon.com/images/I/612b6ON4arL._SL1500_.jpg'} alt='Star Wars Poster'/>
                   <p>{film.title}</p>
                   <p>{filmRelease.join(" ")}</p>
                 </div>

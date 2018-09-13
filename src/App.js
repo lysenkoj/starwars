@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router';
+import { Switch, Route } from 'react-router';
 import Header from './components/header.jsx';
 import Home from './components/home.jsx';
 import Footer from './components/footer';
 import Character from './components/character';
 
 import characters from "./characters.json";
-
-// DO CHARACTER.JSON IMPORT HERE
-
 
 
 class App extends Component {
@@ -18,6 +15,7 @@ class App extends Component {
       characters
     }
   }
+
   render() {
     return (
       <div className="App">

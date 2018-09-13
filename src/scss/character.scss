@@ -1,0 +1,27 @@
+#Character-Container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 50%;
+  overflow-x: auto;
+}
+
+#Film-Container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 300px;
+  background-color: lightgray;
+  border-radius: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  img{
+    width: 120px;
+    height: auto;
+  }
+}

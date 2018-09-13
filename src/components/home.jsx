@@ -14,11 +14,6 @@ export default class HOME extends Component {
       data: null
     };
 
-    // this.fetchData();
-  }
-
-  componentDidMount(){
-    // this.setCharacterData();
   }
 
   setCharacterData(){
@@ -28,30 +23,21 @@ export default class HOME extends Component {
     })
   }
 
-  // fetchData(){
-  //   const url = 'https://www.jcrew.com/data/v1/US/navigation';
-  //   fetch(url)
-  //   	.then((data) => data.json())
-  //     .then((data) => {
-  //     	this.setState(previousState => {
-  //       	previousState.data = data;
-  //         return previousState;
-  //       })
-  //     })
-  //     .catch((er) => console.log(er))
-  // }
-
   render(){
     console.log("HOME", this.props)
     return(
       <div id="Home-Container">
         <div id="Home-Title">
-          <h1>STAR WARS</h1>
-          <h3>Character Film Guide</h3>
+          <div className="Title">STAR</div>
+          <div id="Subtitle">Character Film Guide</div>
+          <div className="Title">WARS</div>
         </div>
         <div id="Home-Main-Content-Container">
           {this.state.characters && this.state.characters.length ? this.state.characters.map((character, index) => {
-            return <Link to={`/${character.name}}`} key={index}> {character.name} </Link>
+            return <Link to={`/${character.name}}`} id="Character-Link" key={index}>
+                      <div id='icon'>{(character.name === 'Darth Vader') ? 'I' : 'R'}</div>
+                      <div>{character.name}</div>
+                    </Link>
           }) : "NO DATA"}
         </div>
       </div>
