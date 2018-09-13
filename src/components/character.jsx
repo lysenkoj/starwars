@@ -67,8 +67,18 @@ export default class Character extends Component {
   }
 
   fetchPoster(film){
-    const filmTitle = film.title.split(' ').join('+');
-    const api = `http://www.omdbapi.com/?t=${filmTitle}&apikey=${OMDb_KEY}`;
+    const filmTitle = film.title;
+    const filmKey = {
+      'The Phantom Menace': 'star+wars%3A+episode+i',
+      'Attack of the Clones': 'star+wars%3A+episode+ii',
+      'Revenge of the Sith': 'star+wars%3A+episode+iii',
+      'A New Hope': 'star+wars%3A+episode+iv',
+      'The Empire Strikes Back': 'star+wars%3A+episode+v',
+      'Return of the Jedi': 'star+wars%3A+episode+vi',
+      'The Force Awakens': 'star+wars%3A+episode+vii'
+    }
+
+    const api = `http://www.omdbapi.com/?t=${filmKey[filmTitle]}&apikey=${OMDb_KEY}`;
 
     fetch(api)
       .then(data => data.json())
@@ -80,12 +90,15 @@ export default class Character extends Component {
   }
 
   render(){
-    console.log("PROPS!!!", this.props);
-    console.log("STATE!!!!", this.state);
-    console.log("FILMS", this.state.films);
+    console.log(this.state)
     return(
       <div id="Character-Container">
-        <div id="Character-Title">{this.props.location.pathname.slice(1, this.props.location.pathname.length - 1)}</div>
+        <div id="Character-Title">
+          <div className="Title">STAR</div>
+          <div id="Subtitle">{`${this.props.location.pathname.slice(1, this.props.location.pathname.length - 1)}'s Films`}</div>
+          <div className="Title">WARS</div>
+        </div>
+        <div id="Character-Slider-Container">
         {(this.state.films.length) ? this.state.films.map((film, index) => {
           const filmRelease = [];
 
@@ -136,6 +149,7 @@ export default class Character extends Component {
                   <p>{filmRelease.join(" ")}</p>
                 </div>
         }) : <h3>Please Enter a Valid URL</h3>}
+        </div>
       </div>
     )
   }

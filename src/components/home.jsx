@@ -35,8 +35,8 @@ export default class HOME extends Component {
         <div id="Home-Main-Content-Container">
           {this.state.characters && this.state.characters.length ? this.state.characters.map((character, index) => {
             return <Link to={`/${character.name}}`} id="Character-Link" key={index}>
-                      <div id='icon'>{(character.name === 'Darth Vader') ? 'I' : 'R'}</div>
-                      <div>{character.name}</div>
+                      <div id='Icon'>{(character.name === 'Darth Vader') ? 'I' : 'R'}</div>
+                      <div id='Character-Name'>{character.name}</div>
                     </Link>
           }) : "NO DATA"}
         </div>

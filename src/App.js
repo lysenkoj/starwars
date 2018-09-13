@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
-import Header from './components/header.jsx';
+import ParticleAnimation from 'react-particle-animation';
 import Home from './components/home.jsx';
-import Footer from './components/footer';
 import Character from './components/character';
 
 import characters from "./characters.json";
@@ -19,12 +18,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
         <Switch>
           <Route exact path="/" render={(props) => <Home characters={this.state.characters.characters} {...props}/>} />
           <Route path="/:character" render={(props) => <Character characters={this.state.characters.characters} {...props}/>} />
         </Switch>
-        <Footer />
+        <ParticleAnimation style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%'
+          }}
+          id='Background'
+          particleRadius={0.5}
+          numParticles={150}
+          color={{r:158,g:217,b:249,a:255 }}
+          background={{r:0,g:0,b:0,a:255}}
+          interactive={false}
+          lineWidth={0.4}
+          particleSpeed={0.8}/>
       </div>
     );
   }

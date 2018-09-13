@@ -3,9 +3,51 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 75%;
-  height: 50%;
-  overflow-x: auto;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+
+#Character-Title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 275px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  .Title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Sigma-Five-Marquee';
+    font-size: 6em;
+    height: 52px;
+    width: 300px;
+  }
+
+  #Subtitle{
+    font-family: 'Metropolis-Regular';
+    font-size: 1.8em;
+    margin-top: 18px;
+  }
+}
+
+#Character-Slider-Container{
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 400px;
+  background-color: white;
+  overflow-x: scroll;
+  border-radius: 25px;
+}
+::-webkit-scrollbar{
+      width: 0px;
+      background: transparent;
 }
 
 #Film-Container{
@@ -19,6 +61,8 @@
   border-radius: 25px;
   margin-left: 5px;
   margin-right: 5px;
+  flex-shrink: 0;
+  font-family: 'Metropolis-Regular';
 
   img{
     width: 120px;

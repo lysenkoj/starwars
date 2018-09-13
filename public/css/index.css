@@ -1,5 +1,6 @@
-body {
+html, body {
   margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -8,6 +9,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  z-index: 1; }
+
+.Background {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
   height: 100vh; }
 
 @font-face {
@@ -37,14 +48,17 @@ body {
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  border-radius: 25px; }
+  border-radius: 25px;
+  z-index: 100;
+  background-color: white; }
 
 #Home-Title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 275px; }
+  height: 275px;
+  background-color: white; }
   #Home-Title .Title {
     display: flex;
     justify-content: center;
@@ -76,19 +90,61 @@ body {
     text-decoration: none;
     color: black;
     border-radius: 25px; }
-    #Home-Main-Content-Container #Character-Link #icon {
+    #Home-Main-Content-Container #Character-Link #Icon {
       font-family: 'dPolyImperial';
       font-size: 6em;
-      padding-left: 7px; }
+      padding-left: 7px;
+      width: 100px;
+      height: 100px; }
+    #Home-Main-Content-Container #Character-Link #Icon:hover {
+      color: #ce0018; }
+    #Home-Main-Content-Container #Character-Link #Character-Name {
+      margin-top: 5px; }
 
 #Character-Container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 75%;
-  height: 50%;
-  overflow-x: auto; }
+  width: 100vw;
+  height: 100vh;
+  z-index: 100; }
+
+#Character-Title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 275px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px; }
+  #Character-Title .Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Sigma-Five-Marquee';
+    font-size: 6em;
+    height: 52px;
+    width: 300px; }
+  #Character-Title #Subtitle {
+    font-family: 'Metropolis-Regular';
+    font-size: 1.8em;
+    margin-top: 18px; }
+
+#Character-Slider-Container {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 400px;
+  background-color: white;
+  overflow-x: scroll;
+  border-radius: 25px; }
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; }
 
 #Film-Container {
   display: flex;
@@ -100,7 +156,9 @@ body {
   background-color: lightgray;
   border-radius: 25px;
   margin-left: 5px;
-  margin-right: 5px; }
+  margin-right: 5px;
+  flex-shrink: 0;
+  font-family: 'Metropolis-Regular'; }
   #Film-Container img {
     width: 120px;
     height: auto; }
