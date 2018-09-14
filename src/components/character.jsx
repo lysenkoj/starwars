@@ -130,7 +130,7 @@ export default class Character extends Component {
           const unformatted = film.release_date.split('-');
 
           const year = unformatted[0];
-          const month = unformatted[1];
+          const month = unformatted[1] - 1;
           const day = unformatted[2];
 
           let newDate = new Date(year, month, day);

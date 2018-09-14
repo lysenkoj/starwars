@@ -40,7 +40,7 @@ html, body {
   src: url("../fonts/dPolyImperial.ttf") format("truetype"); }
 
 #Home-Container {
-  display: none;
+  display: flex;
   height: calc(100vh - 80px);
   width: 400px;
   margin: 40px;

@@ -20,7 +20,7 @@ export default class HOME extends Component {
     const loader = document.querySelector('div#Loader');
 
     // home.style.display = 'none';
-    loader.style.display = 'flex';
+    loader.style.display = 'none';
     this.animateText(loadingText);
 
 
