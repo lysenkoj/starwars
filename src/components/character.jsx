@@ -145,9 +145,17 @@ export default class Character extends Component {
           filmRelease.push(arrayDate[3]);
 
           return <div id='Film-Container' key={index}>
+                <div id='Poster-Container'>
+                {/*
+                  LETS MAKE THE POSTER CONTAINER BACKGROUND IMAGE
+                  THE POASTER IMAGE AND THEN FIT IT TO THE CONTAINER
+                  CROPPING IN ON THE MIDDLE... POSSIBLY
+
+                */}
                   <img src={(this.state.filmsPoster[index] !== 'N/A') ? this.state.filmsPoster[index] : 'https://images-na.ssl-images-amazon.com/images/I/612b6ON4arL._SL1500_.jpg'} alt='Star Wars Poster'/>
+                </div>
                   <div id='Movie-Info-Container'>
-                    <p>{film.title}</p>
+                    <h3>{film.title}</h3>
                     <p>{filmRelease.join(" ")}</p>
                   </div>
                 </div>
