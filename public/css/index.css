@@ -185,7 +185,6 @@ html, body {
   align-items: center;
   width: 500px;
   height: 500px;
-  border: 5px solid white;
   z-index: 155; }
 
 #Death-Star {
@@ -196,7 +195,6 @@ html, body {
 #X-Wing-Container {
   display: flex;
   position: absolute;
-  border: 2px solid red;
   width: 350px;
   height: 350px;
   z-index: 160;
@@ -222,7 +220,6 @@ html, body {
 #Tie-Fighter-Container {
   display: flex;
   position: absolute;
-  border: 2px solid blue;
   width: 250px;
   height: 250px;
   z-index: 165;
