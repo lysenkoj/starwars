@@ -11,19 +11,49 @@ export default class HOME extends Component {
     super(props)
     this.state = {
       characters: this.props.characters,
-      data: null
+      data: null,
+      animation: []
     };
 
-    // Component Hasn't Mounted Yet
     const home = document.querySelector('div#Home-Container');
-    const loadingText = document.querySelector('h2#Loading-Text');
     const loader = document.querySelector('div#Loader');
 
-    // home.style.display = 'none';
-    loader.style.display = 'none';
-    this.animateText(loadingText);
+    this.animateLoader(loader, home);
+
+    setTimeout(()=>{
+      const homeContainer = document.querySelector('div#Home-Container');
+      const loaderContainer = document.querySelector('div#Loader');
+      homeContainer.style.display = 'flex';
+      loaderContainer.style.display = 'none';
+
+      const reposition =  [{transform: 'translateY(-700px)'},
+      {transform: 'translateY(0)'}]
+
+      let timing = {
+        easing: 'linear',
+        iterations: 1,
+        direction: 'normal',
+        fill: 'both',
+        duration: 350
+      };
+
+      homeContainer.animate(reposition, timing);
+
+      this.state.animation.forEach(animation => {
+        animation.pause();
+      })
+      console.log(window)
+    }, 9000)
 
 
+  }
+
+  componentWillUnmount(){
+    const loadingSpans = document.querySelectorAll('span.Loading-Text');
+
+    loadingSpans.forEach(el => {
+      el.parentNode.removeChild(el);
+    })
   }
 
   setCharacterData(){
@@ -31,6 +61,34 @@ export default class HOME extends Component {
       previousState.characters = characters.characters;
       return previousState;
     })
+  }
+
+  animateLoader(animDiv, comp){
+    const loadingText = document.querySelector('h2#Loading-Text');
+    const xWing = document.querySelector('div#X-Wing-Container');
+    const tieFighter = document.querySelector('div#Tie-Fighter-Container');
+
+    let keyframesXWing = [{transform: 'rotate(0)'}, {transform: 'rotate(360deg)'}];
+    let keyframesTieFighter = [{transform: 'rotate(0)'}, {transform: 'rotate(-360deg)'}];
+    let timing = {
+      easing: 'linear',
+      iterations: Infinity,
+      direction: 'normal',
+      fill: 'both',
+      duration: 4000
+    };
+
+    setTimeout(()=>{
+      this.animateText(loadingText);
+      animDiv.style.display = 'flex';
+      const xWingAnimation = xWing.animate(keyframesXWing, timing);
+      const tieFighteraAnimation = tieFighter.animate(keyframesTieFighter, timing);
+      this.setState(previousState => {
+        previousState.animation.push(xWingAnimation);
+        previousState.animation.push(tieFighteraAnimation);
+        return previousState;
+      })
+    }, 250)
   }
 
   animateText(text){
@@ -71,12 +129,10 @@ export default class HOME extends Component {
         letter.innerHTML = String.fromCharCode(randomCharCode);
       }
 
-      console.log(count, min);
-
       count++;
 
       switch(count){
-        case 300:
+        case 160:
           clearInterval(interval);
           break;
         case 100:
@@ -125,7 +181,6 @@ export default class HOME extends Component {
   }
 
   render(){
-    console.log("HOME", this.props)
     return(
       <div id="Home-Container">
         <div id="Home-Title">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { OMDb_KEY } from '../secrets';
+import Luke from '../images/lukeNo.gif';
 // import { Link } from 'react-router-dom';
 
 // import '../Sass/Character.sass';
@@ -145,10 +146,20 @@ export default class Character extends Component {
 
           return <div id='Film-Container' key={index}>
                   <img src={(this.state.filmsPoster[index] !== 'N/A') ? this.state.filmsPoster[index] : 'https://images-na.ssl-images-amazon.com/images/I/612b6ON4arL._SL1500_.jpg'} alt='Star Wars Poster'/>
-                  <p>{film.title}</p>
-                  <p>{filmRelease.join(" ")}</p>
+                  <div id='Movie-Info-Container'>
+                    <p>{film.title}</p>
+                    <p>{filmRelease.join(" ")}</p>
+                  </div>
                 </div>
-        }) : <h3>Please Enter a Valid URL</h3>}
+        }) :
+          <div id='Error-Container'>
+            <div id='Error-Sorry'>SORRY</div>
+            <img src={Luke} alt='Luke Crying Gif'/>
+            <div id='Error-Text'>
+              <h2>404 PAGE NOT FOUND</h2>
+              <h3>THE FORCE WAS NOT WITH YOUR REQUEST</h3>
+            </div>
+          </div>}
         </div>
       </div>
     )

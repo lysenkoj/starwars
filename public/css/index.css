@@ -40,7 +40,7 @@ html, body {
   src: url("../fonts/dPolyImperial.ttf") format("truetype"); }
 
 #Home-Container {
-  display: flex;
+  display: none;
   height: calc(100vh - 80px);
   width: 400px;
   margin: 40px;
@@ -115,7 +115,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 275px;
+  height: 225px;
   background-color: white;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -137,7 +137,7 @@ html, body {
   display: flex;
   align-items: center;
   width: 60%;
-  height: 400px;
+  height: 350px;
   background-color: white;
   overflow-x: scroll;
   border-radius: 25px; }
@@ -153,15 +153,41 @@ html, body {
   align-items: center;
   width: 200px;
   height: 300px;
-  background-color: lightgray;
-  border-radius: 25px;
   margin-left: 5px;
   margin-right: 5px;
   flex-shrink: 0;
   font-family: 'Metropolis-Regular'; }
   #Film-Container img {
     width: 120px;
-    height: auto; }
+    height: auto;
+    border-radius: 10px; }
+
+#Movie-Info-Container {
+  background-color: light gray;
+  font-family: 'Metropolis-Regular'; }
+
+#Error-Sorry {
+  font-family: 'Sigma-Five-Marquee';
+  font-size: 4em; }
+
+#Error-Container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+  #Error-Container img {
+    border-radius: 10px; }
+
+#Error-Text {
+  font-family: 'Metropolis-Regular'; }
+  #Error-Text h2 {
+    margin-top: 15px;
+    margin-bottom: 0; }
+  #Error-Text h3 {
+    margin-top: 5px;
+    margin-bottom: 0; }
 
 @font-face {
   font-family: 'Aurek-Besh-Narrow';
@@ -170,10 +196,10 @@ html, body {
   src: url("../fonts/Aurek-BeshNarrow.ttf") format("truetype"); }
 
 #Loader {
+  display: none;
   width: 100vw;
   height: 100vh;
   position: absolute;
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 150; }
@@ -197,21 +223,7 @@ html, body {
   position: absolute;
   width: 350px;
   height: 350px;
-  z-index: 160;
-  animation: spin 4s linear infinite; }
-
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg); } }
-
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg); } }
-
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+  z-index: 160; }
 
 #X-Wing {
   width: 50px;
@@ -222,21 +234,7 @@ html, body {
   position: absolute;
   width: 250px;
   height: 250px;
-  z-index: 165;
-  animation: counterSpin 4s linear infinite; }
-
-@-moz-keyframes counterSpin {
-  100% {
-    -moz-transform: rotate(-360deg); } }
-
-@-webkit-keyframes counterSpin {
-  100% {
-    -webkit-transform: rotate(-360deg); } }
-
-@keyframes counterSpin {
-  100% {
-    -webkit-transform: rotate(-360deg);
-    transform: rotate(-360deg); } }
+  z-index: 165; }
 
 #Tie-Fighter {
   width: 50px;

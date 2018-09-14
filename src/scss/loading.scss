@@ -6,10 +6,10 @@
 }
 
 #Loader{
+  display: none;
   width: 100vw;
   height: 100vh;
   position: absolute;
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 150;
@@ -39,11 +39,7 @@
   width: 350px;
   height: 350px;
   z-index: 160;
-  animation: spin 4s linear infinite;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 #X-Wing{
   width: 50px;
@@ -57,11 +53,7 @@
   width: 250px;
   height: 250px;
   z-index: 165;
-  animation: counterSpin 4s linear infinite;
 }
-@-moz-keyframes counterSpin { 100% { -moz-transform: rotate(-360deg); } }
-@-webkit-keyframes counterSpin { 100% { -webkit-transform: rotate(-360deg); } }
-@keyframes counterSpin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
 
 #Tie-Fighter{
   width: 50px;
