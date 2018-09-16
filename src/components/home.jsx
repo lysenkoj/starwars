@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import characters from "../characters.json";
 
-// import Character from "./character"
-// import '../Sass/Content.sass';
-
 
 export default class HOME extends Component {
   constructor(props){
@@ -16,10 +13,13 @@ export default class HOME extends Component {
     };
 
     const home = document.querySelector('div#Home-Container');
+
+    //ACCESS LOADER DIV FOR LOADING ANIMATION
     let loader = document.querySelector('div#Loader');
 
     this.animateLoader(loader, home);
 
+    //WAIT FOR ANIMATION TO FINISH BEFORE SHOWING LOADED PAGE
     setTimeout(()=>{
      let homeContainer = document.querySelector('div#Home-Container');
      let loaderContainer = document.querySelector('div#Loader');
@@ -62,6 +62,7 @@ export default class HOME extends Component {
     })
   }
 
+  // ANIMATION LOGIC EXPLAINED IN CHARACTER FILE
   animateLoader(animDiv, comp){
     const loadingText = document.querySelector('h2#Loading-Text');
     const xWing = document.querySelector('div#X-Wing-Container');

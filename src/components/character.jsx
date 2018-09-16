@@ -3,7 +3,6 @@ import { OMDb_KEY } from '../secrets';
 import Luke from '../images/lukeNo.gif';
 import { Link } from 'react-router-dom';
 
-// import '../Sass/Character.sass';
 
 
 export default class Character extends Component {
@@ -18,6 +17,7 @@ export default class Character extends Component {
       animation: []
     };
 
+    //USE THE PATHNAME IN PROPS TO SET APPROPRIATE URL
     const pathName = this.props.location.pathname.slice(1, this.props.location.pathname.length - 1);
 
     for(let i = 0; i  < this.props.characters.length; i++){
@@ -26,14 +26,17 @@ export default class Character extends Component {
       }
     }
 
-    const character = document.querySelector('div#Character-Container');
+    //ACCESS LOADER DIV FOR LOADING ANIMATION
     let loader = document.querySelector('div#Loader');
 
     this.animateLoader(loader);
 
+    //WAIT FOR ANIMATION TO FINISH BEFORE SHOWING LOADED PAGE
     setTimeout(()=>{
       let characterContainer = document.querySelector('div#Character-Container');
       let loaderContainer = document.querySelector('div#Loader');
+
+      //LOAD IN CHARACTER DIV AND TRANSLATE FROM TOP
       characterContainer.style.display = 'flex';
       loaderContainer.style.display = 'none';
 
@@ -50,6 +53,7 @@ export default class Character extends Component {
 
       characterContainer.animate(reposition, timing);
 
+      //PAUSE ANIMATIONS
       this.state.animation.forEach(animation => {
         animation.pause();
       })
@@ -64,6 +68,7 @@ export default class Character extends Component {
   }
 
   componentWillUnmount(){
+    // WHEN COMPONENT UNMOUNTS REMOVE LOADING SPANS FROM INDEX.HTML
     let loadingSpans = document.querySelectorAll('span.Loading-Text');
 
     loadingSpans.forEach(el => {
@@ -101,6 +106,7 @@ export default class Character extends Component {
     }, 250)
   }
 
+  //ANIMATIONS ON THE 'LOADING...' TEXT
   animateText(text){
     let loading = [['L','L'], ['O','O'],['A','A'],['D','D'],['I','I'], ['N','N'],['G','G'],['Dot1', '.'], ['Dot2', '.'], ['Dot3', '.']];
     let count = 0;
@@ -118,6 +124,7 @@ export default class Character extends Component {
       const letter = document.querySelector(`span#${wordSelectors[random]}`);
       const randomCharCode = Math.floor(Math.random() * (92 - 33) + 33);
 
+      // CREATES THE LOADING LETTERS FROM GLYPHS
       const setCorrect = () => {
         let word = 'LOADING...'
         const span = document.querySelector(`span#${wordSelectors[min]}`);
@@ -249,7 +256,6 @@ export default class Character extends Component {
   }
 
   render(){
-    console.log(this.state)
     return(
       <div id="Character-Container">
         <Link to='/' id="Character-Title">
@@ -304,12 +310,6 @@ export default class Character extends Component {
 
           return <div id='Film-Container' key={index}>
                 <div id='Poster-Container'>
-                {/*
-                  LETS MAKE THE POSTER CONTAINER BACKGROUND IMAGE
-                  THE POASTER IMAGE AND THEN FIT IT TO THE CONTAINER
-                  CROPPING IN ON THE MIDDLE... POSSIBLY
-
-                */}
                   <img src={(this.state.filmsPoster[index] !== 'N/A') ? this.state.filmsPoster[index] : 'https://images-na.ssl-images-amazon.com/images/I/612b6ON4arL._SL1500_.jpg'} alt='Star Wars Poster'/>
                 </div>
                   <div id='Movie-Info-Container'>
