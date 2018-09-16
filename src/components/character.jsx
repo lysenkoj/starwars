@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { OMDb_KEY } from '../secrets';
 import Luke from '../images/lukeNo.gif';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // import '../Sass/Character.sass';
 
@@ -14,7 +14,8 @@ export default class Character extends Component {
       url: null,
       data: null,
       films: [],
-      filmsPoster: []
+      filmsPoster: [],
+      animation: []
     };
 
     const pathName = this.props.location.pathname.slice(1, this.props.location.pathname.length - 1);
@@ -24,12 +25,169 @@ export default class Character extends Component {
         this.state.url = this.props.characters[i].url;
       }
     }
+
+    const character = document.querySelector('div#Character-Container');
+    let loader = document.querySelector('div#Loader');
+
+    this.animateLoader(loader);
+
+    setTimeout(()=>{
+      let characterContainer = document.querySelector('div#Character-Container');
+      let loaderContainer = document.querySelector('div#Loader');
+      characterContainer.style.display = 'flex';
+      loaderContainer.style.display = 'none';
+
+      let reposition =  [{transform: 'translateY(-700px)'},
+      {transform: 'translateY(0)'}]
+
+      let timing = {
+        easing: 'linear',
+        iterations: 1,
+        direction: 'normal',
+        fill: 'both',
+        duration: 350
+      };
+
+      characterContainer.animate(reposition, timing);
+
+      this.state.animation.forEach(animation => {
+        animation.pause();
+      })
+    }, 3000)
+
   }
 
   componentDidMount(){
     if(this.state.url){
       this.fetchData();
     }
+  }
+
+  componentWillUnmount(){
+    let loadingSpans = document.querySelectorAll('span.Loading-Text');
+
+    loadingSpans.forEach(el => {
+      el.parentNode.removeChild(el);
+    })
+  }
+
+  // ANIMATIONS
+
+  animateLoader(animDiv){
+    const loadingText = document.querySelector('h2#Loading-Text');
+    const xWing = document.querySelector('div#X-Wing-Container');
+    const tieFighter = document.querySelector('div#Tie-Fighter-Container');
+
+    let keyframesXWing = [{transform: 'rotate(0)'}, {transform: 'rotate(360deg)'}];
+    let keyframesTieFighter = [{transform: 'rotate(0)'}, {transform: 'rotate(-360deg)'}];
+    let timing = {
+      easing: 'linear',
+      iterations: Infinity,
+      direction: 'normal',
+      fill: 'both',
+      duration: 4000
+    };
+
+    setTimeout(()=>{
+      this.animateText(loadingText);
+      animDiv.style.display = 'flex';
+      const xWingAnimation = xWing.animate(keyframesXWing, timing);
+      const tieFighteraAnimation = tieFighter.animate(keyframesTieFighter, timing);
+      this.setState(previousState => {
+        previousState.animation.push(xWingAnimation);
+        previousState.animation.push(tieFighteraAnimation);
+        return previousState;
+      })
+    }, 250)
+  }
+
+  animateText(text){
+    let loading = [['L','L'], ['O','O'],['A','A'],['D','D'],['I','I'], ['N','N'],['G','G'],['Dot1', '.'], ['Dot2', '.'], ['Dot3', '.']];
+    let count = 0;
+    let min = 0;
+
+    for(let i = 0; i < loading.length; i++){
+      text.innerHTML += `<span id=${loading[i][0]} class='Loading-Text'>${loading[i][1]}</span>`;
+    }
+
+
+    var interval = setInterval(()=>{
+      const random = Math.floor(Math.random() * (10 - min) + min);
+      const fullWord = document.querySelectorAll('span.Loading-Text');
+      const wordSelectors = ['L','O','A','D','I','N','G','Dot1','Dot2','Dot3'];
+      const letter = document.querySelector(`span#${wordSelectors[random]}`);
+      const randomCharCode = Math.floor(Math.random() * (92 - 33) + 33);
+
+      const setCorrect = () => {
+        let word = 'LOADING...'
+        const span = document.querySelector(`span#${wordSelectors[min]}`);
+        span.innerHTML = word[min];
+        span.style['font-family'] = 'Metropolis-Regular';
+      }
+
+      if(count%10 && count >= 50){
+        fullWord.forEach(letter => {
+          letter.style.opacity = 1;
+        })
+      }else if(count >= 50){
+        fullWord.forEach(letter => {
+          letter.style.opacity = 0;
+        })
+      }
+
+      if(count < 50){
+        letter.innerHTML = String.fromCharCode(randomCharCode);
+      }
+
+      count++;
+
+      switch(count){
+        case 80:
+          clearInterval(interval);
+          break;
+        case 50:
+          setCorrect();
+          break;
+        case 45:
+          setCorrect();
+          min++;
+          break;
+        case 40:
+          setCorrect();
+          min++;
+          break;
+        case 35:
+          setCorrect();
+          min++;
+          break;
+        case 30:
+          setCorrect();
+          min++;
+          break;
+        case 25:
+          setCorrect();
+          min++;
+          break;
+        case 20:
+          setCorrect();
+          min++;
+          break;
+        case 15:
+          setCorrect();
+          min++;
+          break;
+        case 10:
+          setCorrect();
+          min++;
+          break;
+        case 5:
+          setCorrect();
+          min++;
+          break;
+      }
+
+    }, 30);
+
   }
 
 // FETCH DATA FROM API
@@ -94,11 +252,11 @@ export default class Character extends Component {
     console.log(this.state)
     return(
       <div id="Character-Container">
-        <div id="Character-Title">
+        <Link to='/' id="Character-Title">
           <div className="Title">STAR</div>
           <div id="Subtitle">{`${this.props.location.pathname.slice(1, this.props.location.pathname.length - 1)}'s Films`}</div>
           <div className="Title">WARS</div>
-        </div>
+        </Link>
         <div id="Character-Slider-Container">
         {(this.state.films.length) ? this.state.films.map((film, index) => {
           const filmRelease = [];

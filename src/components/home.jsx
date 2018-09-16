@@ -16,17 +16,17 @@ export default class HOME extends Component {
     };
 
     const home = document.querySelector('div#Home-Container');
-    const loader = document.querySelector('div#Loader');
+    let loader = document.querySelector('div#Loader');
 
     this.animateLoader(loader, home);
 
     setTimeout(()=>{
-      const homeContainer = document.querySelector('div#Home-Container');
-      const loaderContainer = document.querySelector('div#Loader');
+     let homeContainer = document.querySelector('div#Home-Container');
+     let loaderContainer = document.querySelector('div#Loader');
       homeContainer.style.display = 'flex';
       loaderContainer.style.display = 'none';
 
-      const reposition =  [{transform: 'translateY(-700px)'},
+     let reposition =  [{transform: 'translateY(-700px)'},
       {transform: 'translateY(0)'}]
 
       let timing = {
@@ -42,14 +42,13 @@ export default class HOME extends Component {
       this.state.animation.forEach(animation => {
         animation.pause();
       })
-      console.log(window)
     }, 9000)
 
 
   }
 
   componentWillUnmount(){
-    const loadingSpans = document.querySelectorAll('span.Loading-Text');
+    let loadingSpans = document.querySelectorAll('span.Loading-Text');
 
     loadingSpans.forEach(el => {
       el.parentNode.removeChild(el);
