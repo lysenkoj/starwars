@@ -244,7 +244,7 @@ export default class Character extends Component {
       'The Force Awakens': 'star+wars%3A+episode+vii'
     }
 
-    const api = `http://www.omdbapi.com/?t=${filmKey[filmTitle]}&apikey=${OMDb_KEY}`;
+    const api = `https://www.omdbapi.com/?t=${filmKey[filmTitle]}&apikey=${OMDb_KEY}`;
 
     fetch(api)
       .then(data => data.json())
