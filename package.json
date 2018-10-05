@@ -19,7 +19,6 @@
     "build-css": "node-sass --include-path scss src/scss/index.scss -o public/css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
-  "proxy": "https://www.jcrew.com",
   "devDependencies": {
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0"
