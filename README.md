@@ -2,8 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Uses ParticleJS for background
 
-Load in Dependencies
+`npm install` or `yarn add` Dependencies
 
-Start your app by running `npm start`
+Start your app by running `npm start` or `yarn start`
 
 
